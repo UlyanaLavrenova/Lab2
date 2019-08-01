@@ -1,1 +1,31 @@
+#сортировка пузырьком
 
+import random
+
+N = int (input("Vvedite kol-vo elementov: "))
+min = int(input("Vvedite min element: "))
+max = int(input("Vvedite max element: "))
+
+A = []
+
+for i in range (N):
+    A.append(random.randint(min,max))
+print(A)
+B = A.copy()
+print(B)
+C=A
+"""ссылка на А, меняя А или С, меняется и С или А"""
+print(C)
+
+
+def BubbleSort (A):
+    for i in range(len(A)):
+        for j in range(len(A)-1-i):
+            if A[j] > A[j+1]:
+                a = A[j]
+                A[j] = A[j+1]
+                A[j+1] = a
+
+
+BubbleSort(A)
+print(A)
