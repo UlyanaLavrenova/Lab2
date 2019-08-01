@@ -15,7 +15,7 @@ B = A.copy()
 print(B)
 C=A
 """ссылка на А, меняя А или С, меняется и С или А"""
-print(C)
+
 
 
 def BubbleSort (A):
@@ -27,5 +27,28 @@ def BubbleSort (A):
                 A[j+1] = a
 
 
+def QuickSort (A, first, last):
+    if first >= last:
+        return
+    pivot = A[first]
+    first_bigger = first + 1
+    while first_bigger <= last:
+        if A[first_bigger] >= pivot:
+            break
+        first_bigger += 1
+    i = first_bigger + 1
+    while i <= last:
+        if A[i] < pivot:
+            A[i], A[first_bigger] = A[first_bigger], A[i]
+            first_bigger += 1
+        i += 1
+
+    last_smaller = first_bigger -1
+    A[first], A[last_smaller] = A[last_smaller], A[first]
+    QuickSort(A, first, last_smaller - 1)
+    QuickSort(A, first_bigger, last)
+
 BubbleSort(A)
 print(A)
+QuickSort(B, 0, len(B)-1)
+print(B)
