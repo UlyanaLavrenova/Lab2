@@ -1,21 +1,8 @@
 #сортировка пузырьком
 
 import random
-
-N = int (input("Vvedite kol-vo elementov: "))
-min = int(input("Vvedite min element: "))
-max = int(input("Vvedite max element: "))
-
-A = []
-
-for i in range (N):
-    A.append(random.randint(min,max))
-print(A)
-B = A.copy()
-print(B)
-C=A
-"""ссылка на А, меняя А или С, меняется и С или А"""
-
+import datetime
+import prettytable
 
 
 def BubbleSort (A):
@@ -48,7 +35,38 @@ def QuickSort (A, first, last):
     QuickSort(A, first, last_smaller - 1)
     QuickSort(A, first_bigger, last)
 
+
+table = prettytable.PrettyTable(["Size", "Bubble time", "Quick time"])
+x = []
+y1 = []
+y2 = []
+
+
+N = int (input("Vvedite kol-vo elementov: "))
+min = int(input("Vvedite min element: "))
+max = int(input("Vvedite max element: "))
+
+A = []
+
+for i in range (N):
+    A.append(random.randint(min,max))
+print(A)
+B = A.copy()
+print(B)
+C=A
+"""ссылка на А, меняя А или С, меняется и С или А"""
+
+
+t1 = datetime.datetime.now()
 BubbleSort(A)
 print(A)
+t2 = datetime.datetime.now()
+#print ("bubble takes  " , (t2 - t1).total_seconds())
+t3 = datetime.datetime.now()
 QuickSort(B, 0, len(B)-1)
 print(B)
+t4 = datetime.datetime.now()
+#print ("quick takes  " ,(t4 - t3).total_seconds())
+
+table.add_row([str(N), str((t2-t1).total_seconds()), str((t4-t3).total_seconds())])
+print(table)
